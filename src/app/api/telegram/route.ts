@@ -8,7 +8,7 @@ export async function POST(request: any) {
          const body = await request.json();
          if (body.message && body.message.text === '/start') {
             const chatId = body.message.chat.id;
-            const url = 'https://hamster-key-generator-h75nrnm6t-fardins-projects-caa8af9b.vercel.app';
+            const url = 'https://hamster-key-generator-c5ujg1dl0-fardins-projects-caa8af9b.vercel.app';
       
             await bot.sendMessage(chatId, 'Click the button below to start:', {
               reply_markup: {
