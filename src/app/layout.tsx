@@ -17,6 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+      <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
+      </head>
       <body className={outfit.className}>
         {children}
         <Analytics />

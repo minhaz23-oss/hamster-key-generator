@@ -1,4 +1,6 @@
 "use client";
+
+import { ShowAdButton } from "@/components/showBtn";
 import Nav from "@/components/Nav";
 import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,7 +21,7 @@ import {
 } from "@/components/ui/select";
 import { games,keyAmounts } from "@/constraints/script";
 import { CustomField } from "@/components/CustomField";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 const formSchema = z.object({
   gameName: z.string().min(1, {
@@ -37,6 +39,9 @@ export default function Home() {
   const [showProgress,setShowProgress] = useState(false);
   const [showBtn,setShowBtn] = useState(true);
   const [copied, setCopied] = useState(false);
+  // const [adController, setAdController] = useState<AdController | null>(null);
+  const [showAdButton,setShowAdButton] = useState(true)
+
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -46,6 +51,10 @@ export default function Home() {
     },
   })
 
+  
+    
+    
+ 
   const handleCopy = (val:any) => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(val).then(() => {
@@ -225,12 +234,15 @@ const delayRandom = () => Math.random() / 3 + 1;
   console.log(keys)
   setKeys(keys)
   setProgress(100)
+  setShowAdButton(true)
   }
   
 
 }
 
   return (
+    <>
+    
     <main className="flex min-h-screen flex-col items-center">
       <Nav />
       <div className="p-4">
@@ -331,5 +343,15 @@ const delayRandom = () => Math.random() / 3 + 1;
         
       </div>
     </main>
+    {showAdButton && (
+      <div className=" w-full h-screen absolute z-10 left-0 top-0 flex justify-center items-center backdrop-blur-md  ">
+        <div className=" w-[300px] h-[200px] bg-white border-2 border-[#23212C] rounded-md flex flex-col justify-center items-center p-3">
+
+         <h1 className=" text-[18px] font-semibold text-[#23212C]">See one ads to continue!!</h1>
+          {showAdButton && <ShowAdButton />}
+        </div>
+      </div>
+    )}
+    </>
   );
 }
