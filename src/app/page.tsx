@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormItem } from "@/components/ui/form";
+import { ImCross } from "react-icons/im";
 import {
   Select,
   SelectContent,
@@ -33,8 +34,7 @@ export default function Home() {
   const [showProgress, setShowProgress] = useState(false);
   const [showBtn, setShowBtn] = useState(true);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
-  const [showLink,setShowLink] = useState(false);
- 
+  const [showLink, setShowLink] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -44,12 +44,13 @@ export default function Home() {
     },
   });
 
-  const handleCopy = (val: any,index:number) => {
+  const handleCopy = (val: any, index: number) => {
     if (navigator.clipboard) {
       navigator.clipboard
         .writeText(val)
         .then(() => {
           setCopiedIndex(index);
+          
           setTimeout(() => setCopiedIndex(null), 2000); // Reset to "Copy Text" after 2 seconds
         })
         .catch((err) => {
@@ -59,6 +60,7 @@ export default function Home() {
   };
 
   const handleReset = () => {
+    setShowLink(true)
     setShowBtn(true);
     setShowProgress(false);
     setKeys([]);
@@ -255,7 +257,6 @@ export default function Home() {
       console.log(keys);
       setKeys(keys);
       setProgress(100);
-      setShowLink(true)
     }
   }
 
@@ -263,7 +264,10 @@ export default function Home() {
     <>
       <main className="flex min-h-screen flex-col items-center">
         <Nav />
-        <Link href='https://t.me/Tomarket_ai_bot/app?startapp=0000p4t9' className=" w-full h-[50px] bg-red-500  text-white font-semibold text-[16px] flex justify-center items-center">
+        <Link
+          href="https://t.me/Tomarket_ai_bot/app?startapp=0000p4t9"
+          className=" w-full h-[50px] bg-red-500  text-white font-semibold text-[16px] flex justify-center items-center"
+        >
           Click here to get Tomarket Airdrop🚀
         </Link>
         <div className="p-4">
@@ -379,7 +383,7 @@ export default function Home() {
                         {val}
                       </p>
                       <button
-                        onClick={() => handleCopy(val,index)}
+                        onClick={() => handleCopy(val, index)}
                         className="px-4 py-2 bg-[#2353FB] text-white rounded-md"
                       >
                         {copiedIndex === index ? "Copied!!" : "Copy Text"}
@@ -398,9 +402,22 @@ export default function Home() {
             )}
             {showLink && (
               <div className="w-full h-screen backdrop-blur-md absolute top-0 right-0 flex justify-center items-center z-10">
-                <div className=" w-[300px] min-h-[200px] bg-white border-2 border-[#2353FB] rounded-md flex flex-col justify-center items-center p-3">
-                  <img src="/tomarket.png" alt="airdrop" className=" rounded-md w-full h-fit"/>
-                  <Link onClick={() => setShowLink(false)} className=" flex justify-center items-center mt-3 text-white font-semibold bg-red-600 rounded-md w-full py-2" href='https://t.me/Tomarket_ai_bot/app?startapp=0000p4t9' >Get Airdrop</Link>
+                <div className=" relative w-[300px] min-h-[200px] bg-white border-2 border-[#2353FB] rounded-md flex flex-col justify-center items-center p-3">
+                  <img
+                    src="/tomarket.png"
+                    alt="airdrop"
+                    className=" rounded-md w-full h-fit"
+                  />
+                  <Link
+                    onClick={() => setShowLink(false)}
+                    className=" flex justify-center items-center mt-3 text-white font-semibold bg-red-600 rounded-md w-full py-2"
+                    href="https://t.me/Tomarket_ai_bot/app?startapp=0000p4t9"
+                  >
+                    Get Airdrop
+                  </Link>
+                  <div  onClick={() => setShowLink(false)} className="cursor-pointer absolute top-[-60px] lef-[50%] w-10 h-10 rounded-full border border-white flex justify-center items-center">
+                  <ImCross  className=" text-white text-[18px]"/>
+                  </div>
                 </div>
               </div>
             )}
