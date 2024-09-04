@@ -265,10 +265,10 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center">
         <Nav />
         <Link
-          href="https://t.me/Tomarket_ai_bot/app?startapp=0000p4t9"
-          className=" w-full h-[50px] bg-red-500  text-white font-semibold text-[16px] flex justify-center items-center"
+          href="https://t.me/blum/app?startapp=ref_qtQH9Kb1zG"
+          className=" w-full h-[50px] bg-white  text-black font-semibold text-[16px] flex justify-center items-center"
         >
-          Click here to get Tomarket Airdrop🚀
+          Click here to get Blum Airdrop🚀
         </Link>
         <div className="p-4">
           <div className="w-full h-[150px] flex justify-center items-end">
@@ -404,13 +404,13 @@ export default function Home() {
               <div className="w-full h-screen backdrop-blur-md absolute top-0 right-0 flex justify-center items-center z-10">
                 <div className=" relative w-[300px] min-h-[200px] bg-white border-2 border-[#2353FB] rounded-md flex flex-col justify-center items-center p-3">
                   <img
-                    src="/tomarket.png"
+                    src="/blum.jpg"
                     alt="airdrop"
                     className=" rounded-md w-full h-fit"
                   />
                   <Link
                     onClick={() => setShowLink(false)}
-                    className=" flex justify-center items-center mt-3 text-white font-semibold bg-red-600 rounded-md w-full py-2"
+                    className=" flex justify-center items-center mt-3 text-white font-semibold bg-black rounded-md w-full py-2"
                     href="https://t.me/Tomarket_ai_bot/app?startapp=0000p4t9"
                   >
                     Get Airdrop
